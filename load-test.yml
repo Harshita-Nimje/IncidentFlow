@@ -1,0 +1,40 @@
+config:
+  target: "http://localhost:5000"
+
+  phases:
+    - duration: 30
+      arrivalRate: 10
+      name: "Analytics API"
+
+scenarios:
+  - name: "Analytics API"
+    flow:
+
+      - post:
+          url: "/api/auth/login"
+          json:
+            email: "harshita@test.com"
+            password: "Test@12345"
+          capture:
+            - json: "$.token"
+              as: "token"
+
+      - get:
+          url: "/api/analytics/incidents-by-severity"
+          headers:
+            Authorization: "Bearer {{ token }}"
+
+      - get:
+          url: "/api/analytics/stats"
+          headers:
+            Authorization: "Bearer {{ token }}"
+
+      - get:
+          url: "/api/analytics/incident-trends"
+          headers:
+            Authorization: "Bearer {{ token }}"
+
+      - get:
+          url: "/api/analytics/incidents-by-service"
+          headers:
+            Authorization: "Bearer {{ token }}"
