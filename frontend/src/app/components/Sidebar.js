@@ -27,12 +27,15 @@ export default function Sidebar() {
     }, []);
 
     const isAdmin = user?.role?.toLowerCase() === "admin";
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 
         window.location.href = "/login";
     };
+
+    const isActive = (path) => pathname === path;
 
     return (
         <aside className="fixed left-0 top-0 w-64 h-screen bg-slate-900 border-r border-slate-800 p-6 flex flex-col">
@@ -41,37 +44,53 @@ export default function Sidebar() {
             </h1>
 
             <nav className="space-y-2">
+
+                {/* Dashboard */}
                 <Link
                     href="/dashboard"
-                    className={`block px-4 py-3 rounded-lg transition ${pathname === "/dashboard"
-                        ? "bg-slate-800 text-white"
-                        : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                    className={`relative flex items-center px-4 py-3 rounded-lg transition ${isActive("/dashboard")
+                            ? "bg-slate-800 text-white"
+                            : "text-slate-300 hover:bg-slate-800 hover:text-white"
                         }`}
                 >
+                    {isActive("/dashboard") && (
+                        <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-blue-500" />
+                    )}
+
                     Dashboard
                 </Link>
 
+                {/* Incidents */}
                 <Link
                     href="/incidents"
-                    className={`block px-4 py-3 rounded-lg transition ${pathname === "/"
-                        ? "bg-slate-800 text-white"
-                        : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                    className={`relative flex items-center px-4 py-3 rounded-lg transition ${isActive("/incidents")
+                            ? "bg-slate-800 text-white"
+                            : "text-slate-300 hover:bg-slate-800 hover:text-white"
                         }`}
                 >
+                    {isActive("/incidents") && (
+                        <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-blue-500" />
+                    )}
+
                     Incidents
                 </Link>
 
+                {/* Analytics */}
                 <Link
                     href="/analytics"
-                    className={`block px-4 py-3 rounded-lg transition ${pathname === "/analytics"
-                        ? "bg-slate-800 text-white"
-                        : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                    className={`relative flex items-center px-4 py-3 rounded-lg transition ${isActive("/analytics")
+                            ? "bg-slate-800 text-white"
+                            : "text-slate-300 hover:bg-slate-800 hover:text-white"
                         }`}
                 >
+                    {isActive("/analytics") && (
+                        <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-blue-500" />
+                    )}
+
                     Analytics
                 </Link>
 
-
+                {/* Admin */}
                 {isAdmin && (
                     <div className="pt-6">
                         <p className="text-xs font-semibold text-slate-500 uppercase mb-2">
@@ -80,13 +99,22 @@ export default function Sidebar() {
 
                         <Link
                             href="/admin/organizations"
-                            className="block px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                            className={`relative flex items-center px-4 py-3 rounded-lg transition ${isActive("/admin/organizations")
+                                    ? "bg-slate-800 text-white"
+                                    : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                                }`}
                         >
+                            {isActive("/admin/organizations") && (
+                                <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-blue-500" />
+                            )}
+
                             Organizations
                         </Link>
                     </div>
                 )}
             </nav>
+
+            {/* User section */}
             <div className="mt-auto pt-8 border-t border-slate-800">
                 <div className="mb-4">
                     <p className="text-white font-medium">
