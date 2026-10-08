@@ -405,7 +405,7 @@ export default function OrganizationsPage() {
     };
 
     return (
-        <main className="min-h-screen bg-slate-950 text-white p-8">
+       <main className="max-w-6xl mx-auto min-h-screen bg-slate-950 text-white p-8">
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-3xl font-bold">
