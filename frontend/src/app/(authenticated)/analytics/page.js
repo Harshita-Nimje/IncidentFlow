@@ -1,15 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import {
-//     LineChart,
-//     Line,
-//     XAxis,
-//     YAxis,
-//     CartesianGrid,
-//     Tooltip,
-//     ResponsiveContainer
-// } from "recharts";
 import { ResponsiveLine } from "@nivo/line";
 import { ResponsiveBar } from "@nivo/bar";
 
@@ -138,6 +129,13 @@ export default function AnalyticsPage() {
     return (
         <div className="min-h-screen bg-slate-950 text-white p-8">
             <div className="max-w-6xl mx-auto">
+                <h1 className="text-3xl font-bold mb-2">
+                    Incident Analytics
+                </h1>
+
+                <p className="text-slate-400 mb-8">
+                    Overview of incidents by severity
+                </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
 
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
@@ -181,13 +179,7 @@ export default function AnalyticsPage() {
 
                 </div>
 
-                <h1 className="text-3xl font-bold mb-2">
-                    Incident Analytics
-                </h1>
 
-                <p className="text-slate-400 mb-8">
-                    Overview of incidents by severity
-                </p>
 
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
 
@@ -252,76 +244,6 @@ export default function AnalyticsPage() {
                     <h2 className="text-xl font-semibold mb-6">
                         Incident Trends
                     </h2>
-
-                    {/* <div className="w-full h-[400px]">
-                        <ResponsiveLine
-                            data={formattedTrendData}
-                            margin={{
-                                top: 30,
-                                right: 30,
-                                bottom: 60,
-                                left: 60
-                            }}
-                            xScale={{
-                                type: "point"
-                            }}
-                            yScale={{
-                                type: "linear",
-                                min: 0,
-                                max: "auto",
-                                stacked: false
-                            }}
-                            curve="linear"
-                            axisBottom={{
-                                tickRotation: 0,
-                                legend: "Dates",
-                                legendOffset: 45,
-                                legendPosition: "middle"
-                            }}
-                            axisLeft={{
-                                tickValues: 5,
-                                legend: "Incidents",
-                                legendOffset: -50,
-                                legendPosition: "middle"
-                            }}
-                            enableGridX={false}
-                            enableArea={true}
-                            areaOpacity={0.08}
-                            enablePoints={true}
-                            pointSize={7}
-                            pointBorderWidth={2}
-                            useMesh={true}
-                            enableCrosshair={true}
-                            colors={["#3b82f6"]}
-                            tooltip={({ point }) => (
-                                <div className="bg-slate-900 text-white px-3 py-2 rounded-lg text-sm">
-                                    {point.data.yFormatted} incidents
-                                </div>
-                            )}
-                            theme={{
-                                text: {
-                                    fill: "#cbd5e1"
-                                },
-                                axis: {
-                                    ticks: {
-                                        text: {
-                                            fill: "#94a3b8"
-                                        }
-                                    },
-                                    legend: {
-                                        text: {
-                                            fill: "#cbd5e1"
-                                        }
-                                    }
-                                },
-                                grid: {
-                                    line: {
-                                        stroke: "#1e293b"
-                                    }
-                                }
-                            }}
-                        />
-                    </div> */}
 
                     <div className="w-full h-[400px]">
                         {formattedTrendData[0].data.length > 0 ? (
