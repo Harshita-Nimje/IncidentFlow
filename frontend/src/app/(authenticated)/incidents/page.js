@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Bell } from "lucide-react";
-// import { io } from "socket.io-client";
 import socket from "../../socket";
 import { useRouter } from "next/navigation";
 
@@ -109,7 +108,6 @@ export default function Home() {
     const fetchIncidents = async () => {
       try {
         const response = await fetch(
-          // "http://localhost:5000/api/incidents",
           `${process.env.NEXT_PUBLIC_API_URL}/api/incidents`,
           {
             cache: "no-store",
@@ -263,7 +261,7 @@ export default function Home() {
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-800">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight">
+            <h1 className="text-3xl font-bold tracking-tight">
               Incident Flow
             </h1>
 
