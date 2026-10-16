@@ -921,7 +921,7 @@ export default function IncidentDetails() {
 
                                 {users.map((user) => (
                                     <option key={user.id} value={user.id}>
-                                        {user.name}
+                                        {user.name?.trim() || user.email || `User #${user.id}`}
                                     </option>
                                 ))}
                             </select>
