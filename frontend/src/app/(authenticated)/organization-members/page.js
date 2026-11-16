@@ -3,7 +3,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useOrganization } from "../../context/OrganizationContext";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import {
     Users,
     UserPlus,
@@ -24,7 +24,7 @@ import {
 
 export default function OrganizationMembers() {
     const { activeOrganization } = useOrganization();
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
 
     const [userRole, setUserRole] = useState("");
     const [adminOrganizations, setAdminOrganizations] = useState([]);
@@ -431,8 +431,9 @@ export default function OrganizationMembers() {
     ]);
 
     useEffect(() => {
-        const requestedTab = searchParams.get("tab");
-        const requestedOrganizationId = searchParams.get("organization_id");
+        const params = new URLSearchParams(window.location.search);
+        const requestedTab = params.get("tab");
+        const requestedOrganizationId = params.get("organization_id");
 
         if (["members", "requests", "tokens"].includes(requestedTab)) {
             setActiveTab(requestedTab);
@@ -448,7 +449,7 @@ export default function OrganizationMembers() {
         ) {
             setSelectedOrganizationId(requestedOrganizationId);
         }
-    }, [searchParams, userRole, adminOrganizations]);
+    }, [userRole, adminOrganizations]);
 
     return (
         <div className="organization-access-theme min-h-screen bg-[#E9E9DF] px-4 py-6 text-[#35151F] sm:px-6 lg:px-8">
