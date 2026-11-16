@@ -9,8 +9,9 @@ const {
     deleteIncident
 } = require("../controllers/incidentController");
 
-const authenticateToken = require("../middleware/authMiddleware");
-const requireAdmin = require("../middleware/adminMiddleware");
+const {
+    authenticateToken
+} = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get("/", authenticateToken, getIncidents);
 router.get("/:id", authenticateToken, getIncidentById);
 router.post("/", authenticateToken, createIncident);
 router.patch("/:id/status", authenticateToken, updateIncidentStatus);
-router.delete("/:id", authenticateToken, requireAdmin, deleteIncident);
+router.delete("/:id", authenticateToken, deleteIncident);
 router.get("/:id/timeline", authenticateToken, getIncidentTimeline);
 
 module.exports = router;

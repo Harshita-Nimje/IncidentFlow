@@ -6,7 +6,7 @@ const {
     removeUserFromIncident
 } = require("../controllers/incidentAssignmentController");
 const requireAssignmentPermission = require("../middleware/assignmentMiddleware");
-const authenticateToken = require("../middleware/authMiddleware");
+const { authenticateToken } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -22,6 +22,10 @@ router.delete(
     requireAssignmentPermission,
     removeUserFromIncident
 );
-router.get("/:incident_id", authenticateToken, getIncidentAssignments);
+router.get(
+    "/:incident_id",
+    authenticateToken,
+    getIncidentAssignments
+);
 
 module.exports = router;

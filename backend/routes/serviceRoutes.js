@@ -7,27 +7,18 @@ const {
     deleteService
 } = require("../controllers/serviceController");
 
-const authenticateToken = require("../middleware/authMiddleware");
-const requireAdmin = require("../middleware/adminMiddleware");
+const {
+    authenticateToken
+} = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post("/", authenticateToken, requireAdmin, createService);
+router.post("/", authenticateToken, createService);
 
 router.get("/", authenticateToken, getServices);
 
-router.patch(
-    "/:id",
-    authenticateToken,
-    requireAdmin,
-    updateService
-);
+router.patch("/:id", authenticateToken, updateService);
 
-router.delete(
-    "/:id",
-    authenticateToken,
-    requireAdmin,
-    deleteService
-);
+router.delete("/:id", authenticateToken, deleteService);
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const pool = require("../config/db");
 
+
+
 const createTeam = async (req, res) => {
     try {
         const { name, organization_id } = req.body;
@@ -18,6 +20,31 @@ const createTeam = async (req, res) => {
             });
         }
 
+        // Platform Admin can create teams across organizations.
+        // Other users must be Organization Admins.
+        if (req.user.role !== "platform_admin") {
+            const membershipCheck = await pool.query(
+                `SELECT role
+                 FROM organization_members
+                 WHERE organization_id = $1
+                 AND user_id = $2`,
+                [organizationId, req.user.id]
+            );
+
+            if (membershipCheck.rows.length === 0) {
+                return res.status(403).json({
+                    message: "You are not a member of this organization"
+                });
+            }
+
+            if (membershipCheck.rows[0].role !== "admin") {
+                return res.status(403).json({
+                    message: "Only Organization Admins and Platform Admins can create teams"
+                });
+            }
+        }
+
+        // Verify that the organization exists.
         const organizationCheck = await pool.query(
             `SELECT id
              FROM organizations
@@ -42,19 +69,21 @@ const createTeam = async (req, res) => {
             ]
         );
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "Team created successfully",
             team: result.rows[0]
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("Create team error:", error);
 
-        res.status(500).json({
+        return res.status(500).json({
             message: "Server error"
         });
     }
 };
+
+
 
 module.exports = {
     createTeam

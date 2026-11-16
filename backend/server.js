@@ -8,7 +8,7 @@ const helmet = require("helmet");
 const errorHandler = require("./middleware/errorMiddleware");
 
 const authRoutes = require("./routes/authRoutes");
-const authenticateToken = require("./middleware/authMiddleware");
+const { authenticateToken } = require("./middleware/authMiddleware");
 const organizationRoutes = require("./routes/organizationRoutes");
 const teamRoutes = require("./routes/teamRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
@@ -18,6 +18,7 @@ const incidentAssignmentRoutes = require("./routes/incidentAssignmentRoutes");
 const userRoutes = require("./routes/userRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
+const invitationRoutes = require("./routes/invitationRoutes");
 
 if (!process.env.FRONTEND_URL) {
     throw new Error("FRONTEND_URL is not configured");
@@ -34,6 +35,7 @@ app.use(
     })
 );
 
+
 app.use(helmet());
 app.use(express.json());
 
@@ -47,6 +49,7 @@ app.use("/api/assignments", incidentAssignmentRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/analytics", analyticsRoutes);
+app.use("/api/invitations", invitationRoutes);
 
 app.get("/", (req, res) => {
     res.send("IncidentFlow backend is running!");
@@ -59,7 +62,7 @@ app.get("/api/protected", authenticateToken, (req, res) => {
     });
 });
 
-// Centralized error handler — keep this last
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

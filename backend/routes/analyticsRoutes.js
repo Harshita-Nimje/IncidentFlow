@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const authenticateToken = require("../middleware/authMiddleware");
+const { authenticateToken } = require("../middleware/authMiddleware");
 
 const {
     getIncidentsBySeverity,
     getIncidentStats,
     getIncidentTrends,
-    getIncidentsByService
+    getIncidentsByService,
+    getGlobalStats,
+    getOrganizationComparison
 } = require("../controllers/analyticsController");
 
 router.get(
@@ -32,6 +34,18 @@ router.get(
     "/incidents-by-service",
     authenticateToken,
     getIncidentsByService
+);
+
+router.get(
+    "/global-stats",
+    authenticateToken,
+    getGlobalStats
+);
+
+router.get(
+    "/organization-comparison",
+    authenticateToken,
+    getOrganizationComparison
 );
 
 module.exports = router;

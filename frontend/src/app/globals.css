@@ -24,3 +24,150 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================
+   INCIDENTFLOW — INCIDENTS PAGE THEME
+   UI ONLY — NO LOGIC CHANGES
+========================================= */
+
+.incidents-theme {
+  --if-cream: #E9E9DF;
+  --if-sage: #D7DDD2;
+  --if-burgundy: #4B1B27;
+  --if-deep: #35151F;
+  --if-orange: #FF6B1A;
+}
+
+/* Main surfaces */
+.incidents-theme [class*="bg-[#080d18]"],
+.incidents-theme [class*="bg-slate-950"] {
+  background-color: var(--if-cream) !important;
+}
+
+.incidents-theme [class*="bg-[#0D1523]"],
+.incidents-theme [class*="bg-[#101a2a]"],
+.incidents-theme [class*="bg-[#111C2D]"],
+.incidents-theme [class*="bg-[#111c2d]"],
+.incidents-theme [class*="bg-[#111a29]"] {
+  background-color: var(--if-sage) !important;
+}
+
+.incidents-theme [class*="bg-[#080F1C]"],
+.incidents-theme [class*="bg-[#182336]"],
+.incidents-theme [class*="bg-[#1b273a]"] {
+  background-color: #CECFC3 !important;
+}
+
+/* Burgundy panels */
+.incidents-theme [class*="bg-blue-600"],
+.incidents-theme [class*="bg-blue-500"] {
+  background-color: var(--if-burgundy) !important;
+}
+
+/* Orange accents */
+.incidents-theme [class*="text-blue-400"],
+.incidents-theme [class*="text-blue-300"] {
+  color: var(--if-orange) !important;
+}
+
+.incidents-theme [class*="border-blue-500"],
+.incidents-theme [class*="border-blue-400"] {
+  border-color: var(--if-orange) !important;
+}
+
+/* Text hierarchy */
+.incidents-theme [class*="text-white"] {
+  color: var(--if-deep) !important;
+}
+
+.incidents-theme [class*="text-slate-100"],
+.incidents-theme [class*="text-slate-200"],
+.incidents-theme [class*="text-slate-300"] {
+  color: var(--if-burgundy) !important;
+}
+
+.incidents-theme [class*="text-slate-400"] {
+  color: #71615F !important;
+}
+
+.incidents-theme [class*="text-slate-500"],
+.incidents-theme [class*="text-slate-600"] {
+  color: #887B75 !important;
+}
+
+/* Borders */
+.incidents-theme [class*="border-[#202c40]"],
+.incidents-theme [class*="border-[#253146]"],
+.incidents-theme [class*="border-[#29364a]"] {
+  border-color: rgba(75, 27, 39, 0.15) !important;
+}
+
+.incidents-theme [class*="border-white/"] {
+  border-color: rgba(75, 27, 39, 0.12) !important;
+}
+
+/* Primary buttons */
+.incidents-theme button[class*="bg-blue-600"] {
+  background-color: var(--if-orange) !important;
+  color: white !important;
+}
+
+.incidents-theme button[class*="bg-blue-600"]:hover {
+  background-color: #E85B12 !important;
+}
+
+/* Notification panel */
+.incidents-theme [class*="shadow-black"] {
+  box-shadow: 0 18px 55px rgba(53, 21, 31, 0.16) !important;
+}
+
+/* Inputs and dropdowns */
+.incidents-theme input,
+.incidents-theme select {
+  color: var(--if-deep);
+  background-color: #F4F1E9;
+  border-color: rgba(75, 27, 39, 0.18);
+}
+
+.incidents-theme input::placeholder {
+  color: #9A8B82;
+}
+
+.incidents-theme input:focus,
+.incidents-theme select:focus {
+  border-color: var(--if-orange);
+  outline-color: var(--if-orange);
+}
+
+/* Organization cards */
+.incidents-theme [class*="group/org"] {
+  background-color: #F4F1E9;
+  border-color: rgba(75, 27, 39, 0.15);
+}
+
+/* Hover surfaces */
+.incidents-theme [class*="hover:bg-white"]:hover {
+  background-color: rgba(75, 27, 39, 0.045) !important;
+}
+
+.incidents-theme [class*="hover:bg-[#111"] :hover {
+  background-color: rgba(75, 27, 39, 0.06) !important;
+}
+
+/* Keep severity colors meaningful */
+.incidents-theme [class*="text-red-400"] {
+  color: #C44747 !important;
+}
+
+.incidents-theme [class*="text-orange-400"] {
+  color: #D96A24 !important;
+}
+
+.incidents-theme [class*="text-yellow-400"] {
+  color: #A77A20 !important;
+}
+
+.incidents-theme [class*="text-green-400"],
+.incidents-theme [class*="text-emerald-400"] {
+  color: #39805C !important;
+}
